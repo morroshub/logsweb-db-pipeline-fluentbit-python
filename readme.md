@@ -10,3 +10,5 @@ La infraestructura necesaria para el ejemplo se compone de Zookeeper + Kafka par
 Procesar datos del fichero de logs con fluentbit
 Fluent bit es una utilidad que nos permite leer, procesar y guardar datos de distintas fuentes como ficheros de logs, bases de datos, etc. En este caso lo estamos usando para leer datos del fichero de logs nginx.log y enviarlo a una cola de kafa.
 
+
+El script en python lee cada línea del fichero de logs que recibe desde el kafka y crea tres KPIs distintos: REQUEST_X_MINUTE, REQUEST_X_HOUR, REQUEST_X_DAY.
