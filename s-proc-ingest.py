@@ -4,6 +4,13 @@ import logging
 from kafka import KafkaConsumer  
 import psycopg2
 
+# Test
+# Ejecucion paralela 
+
+# python3 s-proc-ingest.py
+# /opt/fluent-bit/bin/fluent-bit -c ./fluent-bit.conf -R ./parser-file.conf
+
+
 year_part = 1 
 month_part = 2 
 day_part = 3 
@@ -16,7 +23,9 @@ def build_kpi_value( timestamp, parts ):
 
   return "".join( dateparts[0:parts] )
 
-# Es importante el uso de ON Conflic ya que sumaria y reduciria el proceso al no consultar consultar la DB permitiendo escalabilidad. Esto es en tiempo real
+# Es importante el uso de ON Conflic ya que sumaria y reduciria el proceso al no consultar consultar la DB y volviendo a recibir la data
+# permitiendo escalabilidad. Esto es en tiempo real 
+
 def store_kpi( kpi_key, kpi_value, vcount ): 
   sql = """ 
   INSERT INTO test.kpis(kpi_key, kpi_value, vcount) VALUES ( %s, %s, %s ) 

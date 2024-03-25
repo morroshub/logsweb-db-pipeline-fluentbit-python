@@ -48,16 +48,16 @@ services:
     container_name: superset
     image: apache/superset:latest
     ports:
-      - "8088:8088"
+      - "8080:8088"
     environment:
-      SUPERSET_CONFIG_PARAMS: "{'SQLALCHEMY_DATABASE_URI': 'postgresql://postgres:postgres@postgres:5432/postgresdb'}"
+      - SUPERSET_SECRET_KEY_FILE=/etc/superset/secret_key.txt
+    volumes:
+      - ./logwebs/secret.txt:/etc/superset/secret_key.txt
     depends_on:
       - postgres
 
   jupyter:
     container_name: jupyter
-    image: jupyter/minimal-notebook
+    image: quay.io/jupyter/datascience-notebook
     ports:
-      - "8888:8888"
-    volumes:
-      - ./notebooks:/home/morros/notebooks
+      - "10000:8888" 
