@@ -48,11 +48,11 @@ services:
     container_name: superset
     image: apache/superset:latest
     ports:
-      - "8080:8088"
+      - "8081:8088"
     environment:
       - SUPERSET_SECRET_KEY_FILE=/etc/superset/secret_key.txt
     volumes:
-      - ./logwebs/secret.txt:/etc/superset/secret_key.txt
+      - ./logwebs-db-data/secret.txt:/etc/superset/secret_key.txt
     depends_on:
       - postgres
 
