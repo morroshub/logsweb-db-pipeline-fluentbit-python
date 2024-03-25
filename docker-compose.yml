@@ -56,7 +56,7 @@ services:
 
   jupyter:
     container_name: jupyter
-    image: jupyter/base-notebook:latest
+    image: jupyter/minimal-notebook
     ports:
       - "8888:8888"
     volumes:
